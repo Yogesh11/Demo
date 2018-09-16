@@ -60,11 +60,13 @@ class DataBaseManager: NSObject {
             dbFacility = updateFacility(facility: insertEntity(entityName: Constant.K_Entity.k_Facility) as! Facility, facilityModel: facilityModel)
         }
 
-        for optionModel in facilityModel.options {
+        for (i,optionModel) in facilityModel.options.enumerated() {
             if let option  = getOptionBy(facilityID: facilityModel.id, optionID: optionModel.id) {
                 updateOption(option: option, optionModel: optionModel, facilityID: facilityModel.id)
             } else{
-                updateOption(option: insertEntity(entityName: Constant.K_Entity.k_Option) as! Option, optionModel: optionModel, facilityID: facilityModel.id)
+                let option = insertEntity(entityName: Constant.K_Entity.k_Option) as! Option
+                option.displayOrder = Int64(i)
+                updateOption(option: option , optionModel: optionModel, facilityID: facilityModel.id)
             }
         }
         return dbFacility
@@ -125,7 +127,9 @@ class DataBaseManager: NSObject {
     func enableOption(facilityID : String , optionID : String, isEnable : Bool) {
         if let option = getOptionBy(facilityID: facilityID, optionID: optionID) {
             option.isEnable = isEnable
+            saveContext()
         }
+
     }
 
     func deleteAllFacility(){
@@ -134,6 +138,11 @@ class DataBaseManager: NSObject {
         saveContext()
     }
 
+    func deleteAllExclusion(){
+        deleteAllEntitiesRelatedWithName(entityName: Constant.K_Entity.k_exclusions, predicate: nil)
+        saveContext()
+    }
+    
     private func deleteAllEntitiesRelatedWithName(entityName : String, predicate : NSPredicate?) {
         let fetch        = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         fetch.predicate  = predicate
@@ -209,7 +218,8 @@ class DataBaseManager: NSObject {
 
     func getOptionsBy(facilityID : String) -> [Option] {
         let query = NSPredicate(format: "facilityId = %@", facilityID)
-        let options = getEntityByName(entityName: Constant.K_Entity.k_Option, predicate: query)
+         let sortDesriptor = NSSortDescriptor(key: #keyPath(Option.displayOrder), ascending: true)
+        let options = getEntityByName(entityName: Constant.K_Entity.k_Option, predicate: query, sortDescriptors: [sortDesriptor])
         return (options ?? []) as! [Option]
     }
 

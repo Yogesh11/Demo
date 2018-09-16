@@ -18,6 +18,7 @@ extension Option {
 
     @NSManaged public var isEnable: Bool
     @NSManaged public var facilityId: String?
+    @NSManaged public var displayOrder: Int64
     @NSManaged public var name: String?
     @NSManaged public var icon: String?
     @NSManaged public var id: String?
