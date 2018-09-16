@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Exclusion" representedClassName="Exclusion" syncable="YES">
+        <attribute name="facilityID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="optionId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="exclusions" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exclusions" inverseName="exclusion" inverseEntity="Exclusions" syncable="YES"/>
+    </entity>
+    <entity name="Exclusions" representedClassName="Exclusions" syncable="YES">
+        <relationship name="exclusion" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Exclusion" inverseName="exclusions" inverseEntity="Exclusion" syncable="YES"/>
+    </entity>
+    <entity name="Facility" representedClassName="Facility" syncable="YES">
+        <attribute name="answerId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="facilityId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Option" representedClassName="Option" syncable="YES">
+        <attribute name="facilityId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isEnable" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Facility" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Option" positionX="-54" positionY="9" width="128" height="120"/>
+        <element name="Exclusions" positionX="-36" positionY="45" width="128" height="60"/>
+        <element name="Exclusion" positionX="-18" positionY="54" width="128" height="90"/>
+    </elements>
+</model>
