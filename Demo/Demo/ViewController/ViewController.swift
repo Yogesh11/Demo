@@ -44,6 +44,8 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
             DispatchQueue.main.async {
                 if error == nil {
                     self.tableLayout.reloadData()
+                } else{
+                    self.showAlert(error: error!)
                 }
                 SVProgressHUD.dismiss()
             }
@@ -65,6 +67,13 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
         // Dispose of any resources that can be recreated.
     }
 
+    private func showAlert(error : RError){
+       let alertController =  UIAlertController(title: error.errortitle, message: error.errorMessage, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Ok", style: .default) { (alertAction) in
 
+        }
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
