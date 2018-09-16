@@ -18,9 +18,9 @@ class DropDownController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+        var cell = tableView.dequeueReusableCell(withIdentifier: Constant.K_CellID.k_cellID)
         if cell == nil {
-            cell = UITableViewCell.init(style: .default, reuseIdentifier: "Cell")
+            cell = UITableViewCell.init(style: .default, reuseIdentifier: Constant.K_CellID.k_cellID)
         }
         let option = options[indexPath.row]
         cell?.imageView?.image = UIImage(named: option.icon ?? "")
@@ -51,8 +51,8 @@ class DropDownController: UIViewController, UITableViewDelegate, UITableViewData
         tableLayout.delegate = self
         tableLayout.dataSource = self
         options = DataBaseManager.sharedManager.getOptionsBy(facilityID: faciltyID)
-        self.title = "Options"
-        self.navigationItem.backBarButtonItem?.title = ""
+        self.title = Constant.K_ViewTitle.k_Option
+        self.navigationItem.backBarButtonItem?.title = Constant.K_ViewTitle.k_Empty
     }
 
     override func didReceiveMemoryWarning() {

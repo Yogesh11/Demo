@@ -14,9 +14,9 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
+        var cell = tableView.dequeueReusableCell(withIdentifier: Constant.K_CellID.k_cellID)
         if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "Cell")
+            cell = UITableViewCell(style: .default, reuseIdentifier: Constant.K_CellID.k_cellID)
         }
         cell?.textLabel?.text  =  listModel.facilityStorage[indexPath.row].name
         return cell!
@@ -24,7 +24,7 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let dropDownController =  self.storyboard?.instantiateViewController(withIdentifier: "DropDownController") as! DropDownController
+        let dropDownController =  self.storyboard?.instantiateViewController(withIdentifier: Constant.K_ViewId.k_dropDownController) as! DropDownController
         let facility = listModel.facilityStorage[indexPath.row]
         dropDownController.faciltyID    = facility.facilityId
         dropDownController.selectedID   = facility.answerId
@@ -55,12 +55,12 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         self.title = "Facilities"
+         self.title = Constant.K_ViewTitle.k_Facility
     }
 
     override func viewWillDisappear(_ animated: Bool){
         super.viewWillDisappear(animated)
-         self.title = ""
+         self.title = Constant.K_ViewTitle.k_Empty
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -69,7 +69,7 @@ class ViewController: UIViewController , UITableViewDelegate, UITableViewDataSou
 
     private func showAlert(error : RError){
        let alertController =  UIAlertController(title: error.errortitle, message: error.errorMessage, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Ok", style: .default) { (alertAction) in
+        let alertAction = UIAlertAction(title: Constant.K_ButtonTitle.k_Ok, style: .default) { (alertAction) in
 
         }
         alertController.addAction(alertAction)

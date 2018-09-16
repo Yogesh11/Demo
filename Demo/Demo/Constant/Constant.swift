@@ -20,11 +20,33 @@ struct Constant {
         static let k_ExclusionList            = "exclusions"
     }
 
+    struct K_UserDefaultKey {
+        static let k_LastSyncDate          = "lastSyncDate"
+        static let k_CoreDataFile          = "Demo"
+    }
+
     struct K_Entity {
         static let k_Facility              = "Facility"
         static let k_Option                = "Option"
         static let k_exclusions            = "Exclusions"
         static let k_exclusion             = "Exclusion"
+    }
+
+    struct  K_ViewTitle {
+         static let k_Facility              = "Facilities"
+         static let k_Option                = "Options"
+         static let k_Empty                 = ""
+    }
+
+    struct  K_ButtonTitle {
+        static let k_Ok                      = "Ok"
+    }
+    struct K_ViewId {
+        static let k_dropDownController     = "DropDownController"
+    }
+
+    struct K_CellID {
+        static let k_cellID    = "cell"
     }
 
      static let k_EndUrl                = "https://my-json-server.typicode.com/iranjith4/ad-assignment/db"

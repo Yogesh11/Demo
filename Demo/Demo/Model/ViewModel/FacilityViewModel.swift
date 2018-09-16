@@ -31,7 +31,7 @@ class FacilityViewModel: BaseViewModel {
                             self.exclusionStorage.append( DataBaseManager.sharedManager.saveExclustion(exclusionList: exclusionList))
                         }
                     }
-                    UserDefaults.standard.setValue(Date(), forKey: "lastSyncDate")
+                    UserDefaults.standard.setValue(Date(), forKey: Constant.K_UserDefaultKey.k_LastSyncDate)
                     UserDefaults.standard.synchronize()
                     completionBlock("" as AnyObject , nil)
                 } else{
@@ -43,7 +43,7 @@ class FacilityViewModel: BaseViewModel {
     }
 
     func getData(completionBlock : @escaping Constant.k_CompletionBlock) {
-        if let lastSyncDate = UserDefaults.standard.value(forKey: "lastSyncDate") as? Date {
+        if let lastSyncDate = UserDefaults.standard.value(forKey: Constant.K_UserDefaultKey.k_LastSyncDate) as? Date {
             let currentDate  = Date()
             let calendar = NSCalendar.current
             let date1 = calendar.startOfDay(for: lastSyncDate)
@@ -60,27 +60,4 @@ class FacilityViewModel: BaseViewModel {
             fetchData(completionBlock: completionBlock)
         }
     }
-
-
-    func selectedAnswer(facilityModel : FacilityModel , optionModel : OptionModel) {
-//        if let answer = facilityModel.selectedOption {
-//            reset(facilityID: facilityModel.id, optionID: answer.id)
-//        }
-//        facilityModel.selectedOption = optionModel
-//        for exclusion in exclusionStorage {
-//            exclusion.checkForAnswer(facilityID: facilityModel.id, optionID: optionModel.id)
-//        }
-    }
-
-    func reset(facilityID : String , optionID : String) {
-//        for exclusion in exclusionStorage {
-//            if let exclusionList = exclusion.reset(facilityID: facilityID, optionID: optionID) {
-//                for exclusionModel in exclusionList {
-//
-//                }
-//            }
-//        }
-    }
-
-
 }
